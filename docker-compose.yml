@@ -1,0 +1,22 @@
+services:
+  llama:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    command: >
+      -m /models/Qwen3.5-9B-Q4_K_M.gguf
+      --ctx-size 32768
+      --n-gpu-layers 99
+      --cache-type-k q4_0
+      --cache-type-v q4_0
+      --host 0.0.0.0
+      --port 8080

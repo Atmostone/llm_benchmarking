@@ -1,0 +1,9 @@
+datasets
+pandas
+numpy
+sacrebleu
+sentence-transformers
+matplotlib
+openai
+scipy
+python-dotenv
